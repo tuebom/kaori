@@ -1,0 +1,38 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">{{data.title}}</div>
+      </div>
+    </div>
+    <div class="page-content">
+
+      <div class="card data-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="label-cell">Kode</th>
+              <th class="label-cell">Nama</th>
+              <th class="numeric-cell">Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data.list}}
+            <tr>
+              <td class="label-cell">{{this.kode}}</td>
+              <td class="label-cell">{{this.nama}}</td>
+              <td class="numeric-cell">{{this.hjual}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

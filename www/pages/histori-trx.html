@@ -1,0 +1,62 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Histori Transaksi</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="list no-hairlines-md">
+        <ul>
+          <li>
+            <div class="row no-gutter">
+              <div class="col-50">
+                <div class="item-content top-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Tanggal transaksi</div>
+                    <div class="item-input-wrap">
+                      <input id="tgltrx" name="tgltrx" type="date" placeholder="Tanggal awal" value=""/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-50">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card data-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="label-cell">Waktu</th>
+              <th class="label-cell">Kode</th>
+              <th class="label-cell">Tujuan</th>
+              <th class="label-cell">SN</th>
+              <th class="numeric-cell">Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data}}
+            <tr>
+              <td class="label-cell">{{this.jam}}</td>
+              <td class="label-cell">{{this.kode}}</td>
+              <td class="label-cell">{{this.tujuan}}</td>
+              <td class="label-cell">{{this.sn}}</td>
+              <td class="numeric-cell">{{this.harga}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

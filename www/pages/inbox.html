@@ -1,0 +1,111 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Inbox</div>
+      </div>
+    </div>
+    <div class="page-content messages-content">
+      <div class="messages">
+
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    // Page Events
+    on: {
+      pageInit: function(e, page) {
+      
+        // Init Messages
+        var messages = app.messages.create({
+          el: '.messages',
+
+          // First message rule
+          firstMessageRule: function (message, previousMessage, nextMessage) {
+            // Skip if title
+            if (message.isTitle) return false;
+            /* if:
+              - there is no previous message
+              - or previous message type (send/received) is different
+              - or previous message sender name is different
+            */
+            if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name) return true;
+            return false;
+          },
+          // Last message rule
+          lastMessageRule: function (message, previousMessage, nextMessage) {
+            // Skip if title
+            if (message.isTitle) return false;
+            /* if:
+              - there is no next message
+              - or next message type (send/received) is different
+              - or next message sender name is different
+            */
+            if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+            return false;
+          },
+          // Last message rule
+          tailMessageRule: function (message, previousMessage, nextMessage) {
+            // Skip if title
+            if (message.isTitle) return false;
+              /* if (bascially same as lastMessageRule):
+              - there is no next message
+              - or next message type (send/received) is different
+              - or next message sender name is different
+            */
+            if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+            return false;
+          }
+        });
+        
+        app.preloader.show();
+    
+        var db = app.data.db;
+
+        if (db) {
+        
+          db.transaction(function(tx) {
+            
+            tx.executeSql('select jam, info from notifikasi order by jam desc;', [], function(ignored, res) {
+              
+              for (var i = 0; i < res.rows.length; i++) {
+
+                messages.addMessage({
+                  text: res.rows.item(i).info,
+                  textHeader: res.rows.item(i).jam,
+                  type: 'received'
+                  // name: person.name,
+                  // avatar: person.avatar
+                });
+              }
+              
+            });
+          }, function(error) {
+            app.preloader.hide();
+            app.dialog.alert('select error: ' + error.message);
+          });
+        } else {
+        
+          messages.addMessage({
+            text: 'Testing...',
+            textHeader: '22.00',
+            type: 'received'
+            // name: person.name,
+            // avatar: person.avatar
+          });
+        }
+        
+        app.preloader.hide();
+     
+      },
+    }
+  }
+</script>
