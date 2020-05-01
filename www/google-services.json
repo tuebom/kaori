@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "226452892243",
+    "firebase_url": "https://kaori-c4900.firebaseio.com",
+    "project_id": "kaori-c4900",
+    "storage_bucket": "kaori-c4900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226452892243:android:afd3553e597343803834a6",
+        "android_client_info": {
+          "package_name": "com.app.kaori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226452892243-jqcen2a4mq990cje807pgtsi6klsvlq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHrlFzriYimnh0mZIjKQg731yGHdKtp8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226452892243-jqcen2a4mq990cje807pgtsi6klsvlq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
