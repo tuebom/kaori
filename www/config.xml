@@ -2,7 +2,6 @@
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.app.kaori"
         version   = "1.0.0">
@@ -38,7 +37,7 @@
     <preference name="android-build-tool" value="gradle" />
     
     <plugin name="phonegap-plugin-push" spec="~2.1.2" source="npm">
-        <variable name="FCM_VERSION" value="11.0.1" />
+        <variable name="FCM_VERSION" value="16.0.1" />
     </plugin>
     <plugin name="phonegap-plugin-barcodescanner" />
     <!--<plugin name="cordova-plugin-camera" source="npm" />
