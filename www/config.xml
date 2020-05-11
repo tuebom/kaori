@@ -38,7 +38,7 @@
     <preference name="android-build-tool" value="gradle" />
     
     <plugin name="phonegap-plugin-push" spec="2.2.0" source="npm">
-        <variable name="FCM_VERSION" value="11.0.1" />
+        <variable name="FCM_VERSION" value="11.6.2" />
     </plugin>
     <plugin name="phonegap-plugin-barcodescanner" source="npm">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.1.1" />
