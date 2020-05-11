@@ -28,8 +28,25 @@ routes = [
         
   },
   {
-    path: '/belanja/',
-    url: './pages/belanja.html',
+    path: '/belanja/:id',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+      var mbrid = routeTo.params.id;
+
+      resolve(
+        { componentUrl: './pages/belanja.html' },
+        { context: { mbrid: mbrid } }
+      );
+      app.preloader.hide();
+    }
+    /*url: './pages/belanja.html',
     on: {
       pageInit: function (event, page) {
         
@@ -127,7 +144,7 @@ routes = [
           });
         });            
       }
-    }
+    }*/
   },
   {
     path: '/pulsa/',
@@ -582,6 +599,413 @@ routes = [
     }
   },
   {
+    path: '/sms/',
+    url: './pages/sms.html',
+    on: {
+      pageInit: function (event, page) {
+        
+        /*var numpad = app.keypad.create({
+          inputEl: '#tujuan',
+          dotButton: false,
+          valueMaxLength: 13,
+          on: {
+            change(keypad, value) {
+              // console.log(keypad, value);
+              value = value.toString();
+              if (value.length === 4) {
+                updateList(value);
+              }
+            }
+          }
+        });*/
+        
+        function updateList(hlr) {
+          app.request.json('http://212.24.111.23/kaori/sms/'+hlr, function (json) {
+
+            $$('#nominal').html('');
+            for (var i = 0; i < json.length; i++) {
+              $$('#nominal').append('<option value="'+json[i].kode+'">'+json[i].nominal+'</option>')
+            }
+    
+          });
+        }
+        
+        $$('#tujuan').on('input', function(){
+          
+          var str = $$('#tujuan').val();
+          
+          if (str.length < 4) {
+            $$('#nominal').html('');
+          } else
+          if (str.length == 4) {
+            updateList(str);
+          } else {
+            var str = $$(this).val().substring(0, 4);
+            updateList(str);
+          }
+        });
+
+        $$('.contact').on('click', function(e){
+     
+          navigator.contacts.pickContact(function(contact){
+              //console.log('The following contact has been selected:' + JSON.stringify(contact));
+              var nomor = contact.phoneNumbers[0].value;
+              $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+              var str = $$('#tujuan').val().substring(0, 4);
+              updateList(str);
+          },function(err){
+              //console.log('Error: ' + err);
+              // alert('Error: ' + err);
+              $$('#tujuan').val('');
+          });
+        });
+      
+        $$('.btnKirim').on('click', function(e){
+          //e.preventDefault();
+          
+          var tujuan = $$('#tujuan').val();
+          if (tujuan == '') {
+              app.dialog.alert('Masukkan data nomor hp tujuan.', 'Paket SMS');
+              return;
+          }
+
+          var rgx_nohp = /[08][0-9]{9,}/;
+          var nohp = tujuan.trim().match(rgx_nohp);
+          if (!nohp) {
+              app.dialog.alert('Input data nomor hp tujuan belum benar.', 'Paket SMS');
+              return;
+          }
+
+          var nominal = $$('#nominal').val();
+          if (nominal == '') {
+              app.dialog.alert('Pilih nominal paket sms.', 'Paket SMS');
+              return;
+          }
+          
+          if (app.data.saldo == 0) {
+            app.dialog.alert('Saldo anda tidak cukup untuk melakukan transaksi pembelian paket sms.', 'Paket SMS');
+            return;
+          }
+          
+          // app.preloader.show();
+          $$(this).prop("disabled", true);
+
+          var formData = app.form.convertToData('.trxsms');
+          formData.Authorization = app.data.token;
+          
+          app.request.post('http://212.24.111.23/kaori/sms', formData, function (res) {
+            
+            // app.preloader.hide();
+            
+            var data = JSON.parse(res);
+        
+            if (data.status) {
+              // setTimeout(function () {
+                app.router.back();
+              // }, 500);
+            } else {
+
+              $$(this).prop("disabled", false);
+              if (data.message !== '') {
+                app.dialog.alert(data.message, 'Paket SMS');
+              }
+            }
+          });
+        });            
+      
+        // if ( AdMob ) {
+          // AdMob.hideBanner();
+        // }
+      },
+      // pageAfterOut: function (event, page) {
+      
+        // if ( AdMob ) {
+          // AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
+        // }
+      // }
+    }
+  },
+  {
+    path: '/gopay/',
+    url: './pages/topup-gopay.html',
+    on: {
+      pageInit: function (event, page) {
+        
+        $$('.contact').on('click', function(e){
+     
+          navigator.contacts.pickContact(function(contact){
+              var nomor = contact.phoneNumbers[0].value;
+              $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+              var str = $$('#tujuan').val().substring(0, 4);
+              updateList(str);
+          },function(err){
+              // alert('Error: ' + err);
+              $$('#tujuan').val('');
+          });
+        });
+      
+        $$('.btnKirim').on('click', function(e){
+          //e.preventDefault();
+          
+          var tujuan = $$('#tujuan').val();
+          if (tujuan === '') {
+              app.dialog.alert('Masukkan data nomor hp tujuan.', 'Topup GOPAY');
+              return;
+          }
+
+          var rgx_nohp = /[08][0-9]{9,}/;
+          var nohp = tujuan.trim().match(rgx_nohp);
+          if (!nohp) {
+              app.dialog.alert('Input data nomor hp tujuan belum benar.', 'Topup GOPAY');
+              return;
+          }
+
+          var kode = $$('#nominal').val();
+          if (kode === '') {
+              app.dialog.alert('Pilih nominal topup.', 'Topup GOPAY');
+              return;
+          }
+          
+          if (app.data.saldo === 0) {
+            app.dialog.alert('Saldo anda tidak cukup untuk melakukan transaksi topup GOPAY.', 'Topup GOPAY');
+            return;
+          }
+          
+          // app.preloader.show();
+          $$(this).prop("disabled", true);
+
+          var formData = app.form.convertToData('.trxpulsa');
+          formData.Authorization = app.data.token;
+          
+          app.request.post('http://212.24.111.23/kaori/gopay', formData, function (res) {
+            
+            var data = JSON.parse(res);
+        
+            if (data.status) {
+              app.router.back();
+            } else {
+
+              $$(this).prop("disabled", false);
+              if (data.message !== '') {
+                app.dialog.alert(data.message, 'Topup GOPAY');
+              }
+            }
+          });
+        });            
+      },
+    }
+  },
+  {
+    path: '/ovo/',
+    url: './pages/topup-ovo.html',
+    on: {
+      pageInit: function (event, page) {
+        
+        $$('.contact').on('click', function(e){
+     
+          navigator.contacts.pickContact(function(contact){
+              var nomor = contact.phoneNumbers[0].value;
+              $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+              var str = $$('#tujuan').val().substring(0, 4);
+              updateList(str);
+          },function(err){
+              // alert('Error: ' + err);
+              $$('#tujuan').val('');
+          });
+        });
+      
+        $$('.btnKirim').on('click', function(e){
+          //e.preventDefault();
+          
+          var tujuan = $$('#tujuan').val();
+          if (tujuan === '') {
+              app.dialog.alert('Masukkan data nomor hp tujuan.', 'Topup OVO');
+              return;
+          }
+
+          var rgx_nohp = /[08][0-9]{9,}/;
+          var nohp = tujuan.trim().match(rgx_nohp);
+          if (!nohp) {
+              app.dialog.alert('Input data nomor hp tujuan belum benar.', 'Topup OVO');
+              return;
+          }
+
+          var kode = $$('#nominal').val();
+          if (kode === '') {
+              app.dialog.alert('Pilih nominal topup.', 'Topup OVO');
+              return;
+          }
+          
+          if (app.data.saldo === 0) {
+            app.dialog.alert('Saldo anda tidak cukup untuk melakukan transaksi topup OVO.', 'Topup OVO');
+            return;
+          }
+          
+          // app.preloader.show();
+          $$(this).prop("disabled", true);
+
+          var formData = app.form.convertToData('.trxpulsa');
+          formData.Authorization = app.data.token;
+          
+          app.request.post('http://212.24.111.23/kaori/ovo', formData, function (res) {
+            
+            var data = JSON.parse(res);
+        
+            if (data.status) {
+              app.router.back();
+            } else {
+
+              $$(this).prop("disabled", false);
+              if (data.message !== '') {
+                app.dialog.alert(data.message, 'Topup OVO');
+              }
+            }
+          });
+        });            
+      },
+    }
+  },
+  {
+    path: '/dana/',
+    url: './pages/topup-dana.html',
+    on: {
+      pageInit: function (event, page) {
+        
+        $$('.contact').on('click', function(e){
+     
+          navigator.contacts.pickContact(function(contact){
+              var nomor = contact.phoneNumbers[0].value;
+              $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+              var str = $$('#tujuan').val().substring(0, 4);
+              updateList(str);
+          },function(err){
+              // alert('Error: ' + err);
+              $$('#tujuan').val('');
+          });
+        });
+      
+        $$('.btnKirim').on('click', function(e){
+          //e.preventDefault();
+          
+          var tujuan = $$('#tujuan').val();
+          if (tujuan === '') {
+              app.dialog.alert('Masukkan data nomor hp tujuan.', 'Topup DANA');
+              return;
+          }
+
+          var rgx_nohp = /[08][0-9]{9,}/;
+          var nohp = tujuan.trim().match(rgx_nohp);
+          if (!nohp) {
+              app.dialog.alert('Input data nomor hp tujuan belum benar.', 'Topup DANA');
+              return;
+          }
+
+          var kode = $$('#nominal').val();
+          if (kode === '') {
+              app.dialog.alert('Pilih nominal topup.', 'Topup DANA');
+              return;
+          }
+          
+          if (app.data.saldo === 0) {
+            app.dialog.alert('Saldo anda tidak cukup untuk melakukan transaksi topup DANA.', 'Topup DANA');
+            return;
+          }
+          
+          // app.preloader.show();
+          $$(this).prop("disabled", true);
+
+          var formData = app.form.convertToData('.trxpulsa');
+          formData.Authorization = app.data.token;
+          
+          app.request.post('http://212.24.111.23/kaori/dana', formData, function (res) {
+            
+            var data = JSON.parse(res);
+        
+            if (data.status) {
+              app.router.back();
+            } else {
+
+              $$(this).prop("disabled", false);
+              if (data.message !== '') {
+                app.dialog.alert(data.message, 'Topup DANA');
+              }
+            }
+          });
+        });            
+      },
+    }
+  },
+  {
+    path: '/hinet/',
+    url: './pages/hinet.html',
+    on: {
+      pageInit: function (event, page) {
+        
+        $$('.contact').on('click', function(e){
+     
+          navigator.contacts.pickContact(function(contact){
+              var nomor = contact.phoneNumbers[0].value;
+              $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+              var str = $$('#tujuan').val().substring(0, 4);
+              updateList(str);
+          },function(err){
+              // alert('Error: ' + err);
+              $$('#tujuan').val('');
+          });
+        });
+      
+        $$('.btnKirim').on('click', function(e){
+          //e.preventDefault();
+          
+          var tujuan = $$('#tujuan').val();
+          if (tujuan === '') {
+              app.dialog.alert('Masukkan data nomor hp tujuan.', 'Paket HINET');
+              return;
+          }
+
+          var rgx_nohp = /[08][0-9]{9,}/;
+          var nohp = tujuan.trim().match(rgx_nohp);
+          if (!nohp) {
+              app.dialog.alert('Input data nomor hp tujuan belum benar.', 'Paket HINET');
+              return;
+          }
+
+          var kode = $$('#nominal').val();
+          if (kode === '') {
+              app.dialog.alert('Pilih nominal topup.', 'Paket HINET');
+              return;
+          }
+          
+          if (app.data.saldo === 0) {
+            app.dialog.alert('Saldo anda tidak cukup untuk melakukan transaksi isi ulang paket HINET.', 'Paket HINET');
+            return;
+          }
+          
+          // app.preloader.show();
+          $$(this).prop("disabled", true);
+
+          var formData = app.form.convertToData('.trxpulsa');
+          formData.Authorization = app.data.token;
+          
+          app.request.post('http://212.24.111.23/kaori/hinet', formData, function (res) {
+            
+            var data = JSON.parse(res);
+        
+            if (data.status) {
+              app.router.back();
+            } else {
+
+              $$(this).prop("disabled", false);
+              if (data.message !== '') {
+                app.dialog.alert(data.message, 'Paket HINET');
+              }
+            }
+          });
+        });            
+      },
+    }
+  },
+  {
     path: '/topup-saldo/',
     url: './pages/topup-saldo.html',
     on: {
@@ -629,8 +1053,8 @@ routes = [
     }
   },
   {
-    path: '/inbox/',
-    componentUrl: './pages/inbox.html',
+    path: '/notifikasi/',
+    componentUrl: './pages/notifikasi.html',
   },
   {
     path: '/cek-harga/',
@@ -645,6 +1069,10 @@ routes = [
     url: './pages/cek-harga-data.html',
   },
   {
+    path: '/cek-harga-topup/',
+    url: './pages/cek-harga-topup.html',
+  },
+  {
     path: '/cek-harga-telpon/',
     url: './pages/cek-harga-telpon.html',
   },
@@ -653,8 +1081,8 @@ routes = [
     url: './pages/cek-harga-sms.html',
   },
   {
-    path: '/cek-harga-game/',
-    url: './pages/cek-harga-game.html',
+    path: '/cek-harga-hinet/',
+    url: './pages/cek-harga-hinet.html',
   },
   {
     path: '/harga-pulsa/:opr/:nama',
@@ -707,6 +1135,33 @@ routes = [
         resolve(
           { componentUrl: './pages/daftar-harga.html' },
           { context: { data: data, } }
+        );
+        app.preloader.hide();
+      });
+    }
+  },
+  {
+    path: '/harga-topup/:opr',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      // kode operator
+      var opr = routeTo.params.opr;
+
+      app.request.json("http://212.24.111.23/kaori/topup/cekharga/"+opr, function(json) {
+          
+        var data = { title: 'Harga Topup ' + opr, list: json };
+
+        resolve(
+          { componentUrl: './pages/daftar-harga.html' },
+          { context: { data: data } }
         );
         app.preloader.hide();
       });
@@ -920,8 +1375,25 @@ routes = [
     }
   },
   {
-    path: '/transfer-saldo/',
-    url: './pages/transfer-saldo.html',
+    path: '/transfer-saldo/:id',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+      var mbrid = routeTo.params.id;
+
+      resolve(
+        { componentUrl: './pages/transfer-saldo.html' },
+        { context: { mbrid: mbrid } }
+      );
+      app.preloader.hide();
+    }
+    /*url: './pages/transfer-saldo.html',
     on: {
       pageInit: function (event, page) {
       
@@ -1008,6 +1480,27 @@ routes = [
           });
         });            
       }
+    }*/
+  },
+  {
+    path: '/qr-barcode/',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+      var code = localStorage.getItem('mbrid');
+      var nama = localStorage.getItem('nama');
+
+      resolve(
+        { componentUrl: './pages/qr-barcode.html' },
+        { context: { code: code, nama: nama } }
+      );
+      app.preloader.hide();
     }
   },
   {

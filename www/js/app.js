@@ -519,6 +519,7 @@ $$('#my-reg-screen .register-button').on('click', function () {
       
       // simpan data nomor handphone
       localStorage.setItem('mbrid', data.mbrid);
+      localStorage.setItem('nama', nama);
       localStorage.setItem('nohp', nohp);
       localStorage.setItem('pin', '1234');
 

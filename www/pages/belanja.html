@@ -1,55 +1,160 @@
-<div class="page" data-name="belanja">
-  <div class="navbar">
-    <div class="navbar-inner sliding">
-      <div class="left">
-        <a href="#" class="link back">
-          <i class="icon icon-back"></i>
-          <span class="ios-only">Back</span>
-        </a>
+<template>
+  <div class="page" data-name="belanja">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Belanja</div>
       </div>
-      <div class="title">Belanja</div>
     </div>
-  </div>
-  <div class="page-content">
-    <div class="block">
-    <form class="belanja form-ajax-submit">
-    <input type="hidden" name="prognum" value="1" />
-    <div class="list no-hairlines-md">
-      <ul>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">ID Member Tujuan</div>
+    <div class="page-content">
+      <div class="block">
+      <form class="belanja form-ajax-submit">
+      <input type="hidden" name="prognum" value="1" />
+      <div class="list no-hairlines-md">
+        <ul>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">ID Member Tujuan</div>
+                  <div class="item-input-wrap">
+                      <input type="number" id="mbrid" name="tujuan" value="{{mbrid}}" placeholder="ID Member" autocomplete="off" />
+                  </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Nominal</div>
                 <div class="item-input-wrap">
-                    <input type="number" id="mbrid" name="tujuan" placeholder="ID Member" autocomplete="off" />
+                    <input type="number" id="nominal" name="nominal" placeholder="Nominal" />   
                 </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Nominal</div>
-              <div class="item-input-wrap">
-                  <input type="number" id="nominal" name="nominal" placeholder="Nominal" />   
               </div>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Nomor PIN</div>
-              <div class="item-input-wrap">
-                  <input type="password" id="pin" name="pin" placeholder="Nomor PIN" />
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Nomor PIN</div>
+                <div class="item-input-wrap">
+                    <input type="password" id="pin" name="pin" placeholder="Nomor PIN" />
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="content-block"><a href="#" class="button button-raised button-fill larger btnKirim">Kirim</a></div>
-    </form>
+          </li>
+        </ul>
+      </div>
+      <div class="content-block"><a href="#" class="button button-raised button-fill larger btnKirim">Kirim</a></div>
+      </form>
+      </div>
     </div>
   </div>
-</div>
+</template>
+<script>
+    return {
+      // Page Events
+      on: {
+        pageInit: function (event, page) {
+        
+          $$('.contact').on('click', function(e){
+      
+            navigator.contacts.pickContact(function(contact){
+                //console.log('The following contact has been selected:' + JSON.stringify(contact));
+                var nomor = contact.phoneNumbers[0].value;
+                $$('#tujuan').val(nomor.replace('+62','0').replace(/-/g,'').replace(/ /g,''));
+                var str = $$('#tujuan').val().substring(0, 4);
+                updateList(str);
+            },function(err){
+                //console.log('Error: ' + err);
+                // alert('Error: ' + err);
+                $$('#tujuan').val('');
+            });
+          });
+        
+          $$('.btnKirim').on('click', function(e){
+            //e.preventDefault(); 
+            
+            var mbrid = $$('#mbrid').val();
+            
+            if (mbrid == '') {
+                app.dialog.alert('Masukkan ID member penjual.', 'Belanja');
+                return;
+            } else
+            if (mbrid == app.data.mbrid) {
+              app.dialog.alert('Nomor ID penjual tidak boleh sama dengan ID pembeli.', 'Belanja');
+              return;
+            }
+
+            var nominal = $$('#nominal').val();
+
+            if (nominal == '') {
+                app.dialog.alert('Masukkan nominal belanja.', 'Belanja');
+                return;
+            } else
+            if (app.data.saldo == 0) {
+              app.dialog.alert('Saldo anda kosong. Silahkan topup saldo anda terlebih dahulu.', 'Belanja');
+              return;
+            } else
+            if (app.data.saldo < 5000) {
+              app.dialog.alert('Jumlah saldo anda belum mencukupi minimal belanja.', 'Belanja');
+              $$('#belanja [name="nominal"]').val('0');
+              return;
+            } else
+            if (nominal < 5000) {
+              app.dialog.alert('Jumlah minimal belanja sebesar 5000.', 'Belanja');
+              $$('#nominal').val(5000);
+              return;
+            }
+            
+            var pin = $$('#pin').val();
+            if (pin === '') {
+              app.dialog.alert('Masukkan nomor PIN anda.', 'Belanja');
+              return;
+            }
+                    
+            app.preloader.show();
+
+            var formData = app.form.convertToData('.belanja');
+            formData.Authorization = app.data.token;
+            //console.log(formData);
+            
+            app.request.post('http://212.24.111.23/kaori/member/belanja', formData, function (res) {
+              
+              //console.log(res);
+              app.preloader.hide();
+
+              var data = JSON.parse(res);
+          
+              if (data.status) {
+                
+                app.router.back();
+
+                // ambil informasi saldo member
+                app.request.get('http://212.24.111.23/kaori/member/saldo/'+app.data.mbrid, function (res) {
+                    
+                  var data = JSON.parse(res);
+              
+                  if (data.status) {
+                    $$('.saldo').text(parseInt(data.saldo).toLocaleString('ID'));
+                    app.data.saldo = parseInt(data.saldo);
+                    $$('.bonus').text(parseInt(data.bonus).toLocaleString('ID'));
+                    app.data.bonus = parseInt(data.bonus);
+                  } else {
+                    app.dialog.alert(data.message);
+                  }
+                });
+              } else {
+                $$('#pin').val('');
+                app.dialog.alert(data.message, 'Belanja');
+              }
+            });
+          });            
+        }
+      }
+    }
+</script>
