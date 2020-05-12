@@ -70,7 +70,7 @@
     <!-- <engine name="android" spec="~7.0.0" /> -->
     <platform name="android">
         <allow-intent href="market:*" />
-        <resource-file src="google-services.json" target="app/google-services.json" />
+        <resource-file src="google-services.json" target="google-services.json" />
         <icon src="res/icon/android/icon-36-ldpi.png" density="ldpi"/>
         <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi"/>
         <icon src="res/icon/android/icon-72-hdpi.png" density="hdpi"/>
