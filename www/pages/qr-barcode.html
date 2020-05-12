@@ -64,11 +64,11 @@
                 onClick: function () {
 
                   cloudSky.zBar.scan({
-                    text_title: "OPTIONAL Title Text - default = 'Scan QR Code'", // Android only
+                    text_title: "Scan QR Code", // Android only
                     text_instructions: "Tempatkan barcode pada area scan",
                     camera: "back", // defaults to "back"
                     flash: "auto", // defaults to "auto". See Quirks
-                    drawSight: false //defaults to true, create a red sight/line in the center of the scanner view.
+                    drawSight: true //defaults to true, create a red sight/line in the center of the scanner view.
                   }, function (result){
                     app.router.navigate('/belanja/'+result, {
                       reloadCurrent: true,
@@ -114,11 +114,11 @@
                 onClick: function () {
                       
                   cloudSky.zBar.scan({
-                    text_title: "OPTIONAL Title Text - default = 'Scan QR Code'", // Android only
+                    text_title: "Scan QR Code", // Android only
                     text_instructions: "Tempatkan barcode pada area scan",
                     camera: "back", // defaults to "back"
                     flash: "auto", // defaults to "auto". See Quirks
-                    drawSight: false //defaults to true, create a red sight/line in the center of the scanner view.
+                    drawSight: true //defaults to true, create a red sight/line in the center of the scanner view.
                   }, function (result){
                     app.router.navigate('/transfer-saldo/'+result, {
                       reloadCurrent: true,
