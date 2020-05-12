@@ -28,6 +28,25 @@ routes = [
         
   },
   {
+    path: '/belanja/',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      resolve(
+        { componentUrl: './pages/belanja.html' },
+        { context: { mbrid: null } }
+      );
+      app.preloader.hide();
+    }
+  },
+  {
     path: '/belanja/:id',
     async: function (routeTo, routeFrom, resolve, reject) {
       // Router instance
@@ -1082,7 +1101,31 @@ routes = [
   },
   {
     path: '/cek-harga-hinet/',
-    url: './pages/cek-harga-hinet.html',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      // kode operator
+      //var opr = routeTo.params.opr;
+
+      // Simulate Ajax Request
+      app.request.json("http://212.24.111.23/kaori/hinet/cekharga", function(json) {
+          
+        var data = { title: 'Harga Paket HINET', list: json };
+
+        resolve(
+          { componentUrl: './pages/daftar-harga.html' },
+          { context: { data: data, } }
+        );
+        app.preloader.hide();
+      });
+    }
   },
   {
     path: '/harga-pulsa/:opr/:nama',
@@ -1372,6 +1415,25 @@ routes = [
           });
         });                  
       }
+    }
+  },
+  {
+    path: '/transfer-saldo/',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      resolve(
+        { componentUrl: './pages/transfer-saldo.html' },
+        { context: { mbrid: null } }
+      );
+      app.preloader.hide();
     }
   },
   {
