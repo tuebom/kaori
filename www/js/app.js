@@ -456,9 +456,9 @@ $$('#my-login-screen .login-button').on('click', function () {
     } else {
       app.dialog.alert(data.message, 'Login Member');
     }
-  }, function (err) {
+  }, function (xhr, status) {
     app.preloader.hide();
-    app.dialog.alert(err, 'Login Member');
+    app.dialog.alert(status, 'Login Member');
   });
 });
 
@@ -537,9 +537,9 @@ $$('#my-reg-screen .register-button').on('click', function () {
     } else {
       app.dialog.alert(data.message, 'Registrasi Member');
     }
-  }, function (err) {
+  }, function (xhr, status) {
     app.preloader.hide();
-    app.dialog.alert(err, 'Registrasi Member');
+    app.dialog.alert(status, 'Registrasi Member');
   });
 });
 
