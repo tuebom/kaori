@@ -449,19 +449,16 @@ $$('#my-login-screen .login-button').on('click', function () {
           $$('.bonus').text(parseInt(data.bonus).toLocaleString('ID'));
           app.data.bonus = parseInt(data.bonus);
         } else {
-          app.dialog.alert(data.message, 'Akun Saya');
+          app.dialog.alert(data.message, 'Login Member');
         }
       });
-
-      // if ( AdMob ) {
-     
-      //   // this will create a banner on startup
-      //   AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
-      // }
 
     } else {
       app.dialog.alert(data.message, 'Login Member');
     }
+  }, function (err) {
+    app.preloader.hide();
+    app.dialog.alert(err, 'Login Member');
   });
 });
 
@@ -540,6 +537,9 @@ $$('#my-reg-screen .register-button').on('click', function () {
     } else {
       app.dialog.alert(data.message, 'Registrasi Member');
     }
+  }, function (err) {
+    app.preloader.hide();
+    app.dialog.alert(err, 'Registrasi Member');
   });
 });
 
