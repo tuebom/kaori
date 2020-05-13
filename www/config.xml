@@ -68,7 +68,6 @@
     
     <!--<icon src="img/icon/icon.png"/>-->
     <engine name="android" spec="~7.0.0" />
-    <access origin="*" />
     <allow-intent href="http://*/*" launch-external="yes" />
     <allow-intent href="https://*/*" launch-external="yes" />
     <allow-intent href="tel:*" />
@@ -76,7 +75,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
-    <allow-navigation href="http://212.24.111.23/*" />
+    <access origin="*" />
 
     <platform name="android">
         <allow-intent href="market:*" />
