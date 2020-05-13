@@ -1556,7 +1556,7 @@ routes = [
       // Show Preloader
       app.preloader.show();
       var code = localStorage.getItem('mbrid');
-      var nama = localStorage.getItem('nama');
+      var nama = localStorage.getItem('nama').toUpperCase();
 
       resolve(
         { componentUrl: './pages/qr-barcode.html' },
