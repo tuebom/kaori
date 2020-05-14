@@ -60,7 +60,7 @@ var app  = new Framework7({
 
     init: function () { // sama dengan onDeviceReady
 
-      //*
+      /*
       function copyDatabaseFile(dbName) {
 
         var sourceFileName = cordova.file.applicationDirectory + 'www/' + dbName;
@@ -410,10 +410,11 @@ $$('#my-login-screen .login-button').on('click', function () {
   app.preloader.show();
 
   var formData = app.form.convertToData('.login-form');
-
+  
   var regId = localStorage.getItem('RegId');
   formData.gcmid = regId;
 
+  app.dialog.alert(formData);
   
   // http://212.24.111.23/
   app.request.post('http://212.24.111.23/kaori/auth/login', formData, function (res) {
