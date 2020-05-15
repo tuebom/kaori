@@ -9,7 +9,7 @@ routes = [
         setTimeout(function () {
 
           // http://212.24.111.23/
-          app.request.get('http://212.24.111.23/kaori/member/saldo/'+ app.data.mbrid, function (res) {
+          app.request.get( app.data.endpoint + 'member/saldo/'+ app.data.mbrid, function (res) {
           
             var data = JSON.parse(res);
         
@@ -131,7 +131,7 @@ routes = [
           formData.Authorization = app.data.token;
           //console.log(formData);
           
-          app.request.post('http://212.24.111.23/kaori/member/belanja', formData, function (res) {
+          app.request.post( app.data.endpoint + 'member/belanja', formData, function (res) {
             
             //console.log(res);
             app.preloader.hide();
@@ -143,7 +143,7 @@ routes = [
               app.router.back();
 
               // ambil informasi saldo member
-              app.request.get('http://212.24.111.23/kaori/member/saldo/'+app.data.mbrid, function (res) {
+              app.request.get( app.data.endpoint + 'member/saldo/'+app.data.mbrid, function (res) {
                   
                 var data = JSON.parse(res);
             
@@ -172,7 +172,7 @@ routes = [
       pageInit: function (event, page) {
         
         function updateList(hlr) {
-          app.request.json('http://212.24.111.23/kaori/pulsa/'+hlr, function (json) {
+          app.request.json( app.data.endpoint + 'pulsa/'+hlr, function (json) {
 
             $$('#nominal').html('');
             for (var i = 0; i < json.length; i++) {
@@ -245,7 +245,7 @@ routes = [
           var formData = app.form.convertToData('.trxpulsa');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/pulsa', formData, function (res) {
+          app.request.post( app.data.endpoint + 'pulsa', formData, function (res) {
             
             // app.preloader.hide();
             
@@ -284,7 +284,7 @@ routes = [
       pageInit: function (event, page) {
         
         function updateList(hlr) {
-          app.request.json('http://212.24.111.23/kaori/data/'+hlr, function (json) {
+          app.request.json( app.data.endpoint + 'data/'+hlr, function (json) {
 
             $$('#paket').html('');
             for (var i = 0; i < json.length; i++) {
@@ -350,7 +350,7 @@ routes = [
           var formData = app.form.convertToData('.trxdata');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/data', formData, function (res) {
+          app.request.post( app.data.endpoint + 'data', formData, function (res) {
             
             // app.preloader.hide();
             
@@ -458,7 +458,7 @@ routes = [
           var formData = app.form.convertToData('.trxpln');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/pln', formData, function (res) {
+          app.request.post( app.data.endpoint + 'pln', formData, function (res) {
             
             // app.preloader.hide();
             
@@ -512,7 +512,7 @@ routes = [
         });*/
         
         function updateList(hlr) {
-          app.request.json('http://212.24.111.23/kaori/telpon/'+hlr, function (json) {
+          app.request.json( app.data.endpoint + 'telpon/'+hlr, function (json) {
 
             $$('#nominal').html('');
             for (var i = 0; i < json.length; i++) {
@@ -585,7 +585,7 @@ routes = [
           var formData = app.form.convertToData('.trxtelpon');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/telpon', formData, function (res) {
+          app.request.post( app.data.endpoint + 'telpon', formData, function (res) {
             
             // app.preloader.hide();
             
@@ -639,7 +639,7 @@ routes = [
         });*/
         
         function updateList(hlr) {
-          app.request.json('http://212.24.111.23/kaori/sms/'+hlr, function (json) {
+          app.request.json( app.data.endpoint + 'sms/'+hlr, function (json) {
 
             $$('#nominal').html('');
             for (var i = 0; i < json.length; i++) {
@@ -712,7 +712,7 @@ routes = [
           var formData = app.form.convertToData('.trxsms');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/sms', formData, function (res) {
+          app.request.post( app.data.endpoint + 'sms', formData, function (res) {
             
             // app.preloader.hide();
             
@@ -796,7 +796,7 @@ routes = [
           var formData = app.form.convertToData('.trxpulsa');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/gopay', formData, function (res) {
+          app.request.post( app.data.endpoint + 'gopay', formData, function (res) {
             
             var data = JSON.parse(res);
         
@@ -866,7 +866,7 @@ routes = [
           var formData = app.form.convertToData('.trxpulsa');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/ovo', formData, function (res) {
+          app.request.post( app.data.endpoint + 'ovo', formData, function (res) {
             
             var data = JSON.parse(res);
         
@@ -936,7 +936,7 @@ routes = [
           var formData = app.form.convertToData('.trxpulsa');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/dana', formData, function (res) {
+          app.request.post( app.data.endpoint + 'dana', formData, function (res) {
             
             var data = JSON.parse(res);
         
@@ -1006,7 +1006,7 @@ routes = [
           var formData = app.form.convertToData('.trxpulsa');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/hinet', formData, function (res) {
+          app.request.post( app.data.endpoint + 'hinet', formData, function (res) {
             
             var data = JSON.parse(res);
         
@@ -1049,7 +1049,7 @@ routes = [
           var formData = app.form.convertToData('.topup');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/member/topup', formData, function (res) {
+          app.request.post( app.data.endpoint + 'member/topup', formData, function (res) {
             
             app.preloader.hide();
             
@@ -1383,7 +1383,7 @@ routes = [
           var formData = app.form.convertToData('.pendaftaran');
           formData.mbrid = app.data.mbrid;
           
-          app.request.post('http://212.24.111.23/kaori/member', formData, function (res) { //212.24.111.23
+          app.request.post( app.data.endpoint + 'member', formData, function (res) { //212.24.111.23
             
             app.preloader.hide();
             
@@ -1395,7 +1395,7 @@ routes = [
               app.router.back();
 
               // ambil informasi saldo member
-              app.request.get('http://212.24.111.23/kaori/member/saldo/'+app.data.mbrid, function (res) {
+              app.request.get( app.data.endpoint + 'member/saldo/'+app.data.mbrid, function (res) {
                   
                 var data = JSON.parse(res);
             
@@ -1510,7 +1510,7 @@ routes = [
           formData.Authorization = app.data.token;
           //console.log(formData);
           
-          app.request.post('http://212.24.111.23/kaori/member/trfsaldo', formData, function (res) {
+          app.request.post( app.data.endpoint + 'member/trfsaldo', formData, function (res) {
             
             //console.log(res);
             app.preloader.hide();
@@ -1522,7 +1522,7 @@ routes = [
               app.router.back();
 
               // ambil informasi saldo member
-              app.request.get('http://212.24.111.23/kaori/member/saldo/'+app.data.mbrid, function (res) {
+              app.request.get( app.data.endpoint + 'member/saldo/'+app.data.mbrid, function (res) {
                   
                 var data = JSON.parse(res);
             
@@ -1634,7 +1634,7 @@ routes = [
         
         var mbrid = app.data.mbrid;
         
-        app.request.get('http://212.24.111.23/kaori/member/saldo/'+mbrid, function (res) {
+        app.request.get( app.data.endpoint + 'member/saldo/'+mbrid, function (res) {
             
           var data = JSON.parse(res);
         
@@ -1655,7 +1655,7 @@ routes = [
         
         $$('.cek-id').on('click', function(e){
           
-          app.request.get('http://212.24.111.23/kaori/member/cek_id/'+ app.data.mbrid, function (res) {
+          app.request.get( app.data.endpoint + 'member/cek_id/'+ app.data.mbrid, function (res) {
             
             var data = JSON.parse(res);
     
@@ -1690,7 +1690,7 @@ routes = [
           var formData = app.form.convertToData('.komplain');
           formData.Authorization = app.data.token;
           
-          app.request.post('http://212.24.111.23/kaori/member/komplain', formData, function (res) {
+          app.request.post( app.data.endpoint + 'member/komplain', formData, function (res) {
             
             app.preloader.hide();
             
