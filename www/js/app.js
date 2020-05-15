@@ -37,7 +37,7 @@ var app  = new Framework7({
   data: function () {
     return {
       db: null,
-      endpoint:  app.data.endpoint + 'api/v1/',
+      endpoint: 'http://212.24.111.23/kaori/api/v1/',
       mbrid: null,
       nohp: '',
       pin: '',
