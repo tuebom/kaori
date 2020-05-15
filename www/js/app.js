@@ -37,7 +37,7 @@ var app  = new Framework7({
   data: function () {
     return {
       db: null,
-      endpoint: 'http://212.24.111.23/kaori/api/v1/',
+      endpoint: 'http://212.24.111.23/kaori/',
       mbrid: null,
       nohp: '',
       pin: '',
@@ -61,6 +61,10 @@ var app  = new Framework7({
 
     init: function () { // sama dengan onDeviceReady
 
+      $$('#img1').attr('src', this.data.endpoint + 'images/back1.jpg');
+      $$('#img2').attr('src', this.data.endpoint + 'images/back2.jpg');
+      $$('#img3').attr('src', this.data.endpoint + 'images/back3.jpg');
+      
       //*
       function copyDatabaseFile(dbName) {
 
@@ -140,7 +144,7 @@ var app  = new Framework7({
   
         this.preloader.show();
 
-        this.request.post( app.data.endpoint + 'auth/login', formData, function (res) {
+        this.request.post( app.data.endpoint + 'api/v1/auth/login', formData, function (res) {
     
           app.preloader.hide();
           var data = JSON.parse(res);
@@ -153,7 +157,7 @@ var app  = new Framework7({
             app.data.token = data.token;
             
             // ambil informasi saldo member
-            app.request.get( app.data.endpoint + 'member/saldo/'+mbrid, function (res) {
+            app.request.get( app.data.endpoint + 'api/v1/member/saldo/'+mbrid, function (res) {
                 
               var data = JSON.parse(res);
           
@@ -231,7 +235,7 @@ var app  = new Framework7({
         setTimeout(function () {
 
           // http://212.24.111.23/
-          app.request.get( app.data.endpoint + 'member/saldo/'+ app.data.mbrid, function (res) {
+          app.request.get( app.data.endpoint + 'api/v1/member/saldo/'+ app.data.mbrid, function (res) {
           
             var data = JSON.parse(res);
         
@@ -418,7 +422,7 @@ $$('#my-login-screen .login-button').on('click', function () {
   // console.log(formData)
   
   // http://212.24.111.23/
-  app.request.post( app.data.endpoint + 'auth/login', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/auth/login', formData, function (res) {
     
     app.preloader.hide();
     
@@ -441,7 +445,7 @@ $$('#my-login-screen .login-button').on('click', function () {
       // kosongkan isian nomor pin
       $$('#my-login-screen [name="pin"]').val('');
       
-      app.request.get( app.data.endpoint + 'member/saldo/'+mbrid, function (res) {
+      app.request.get( app.data.endpoint + 'api/v1/member/saldo/'+mbrid, function (res) {
           
         var data = JSON.parse(res);
     
@@ -508,7 +512,7 @@ $$('#my-reg-screen .register-button').on('click', function () {
   // formData.mbrid = 1; cause wrong result
   formData.gcmid = regId;
 
-  app.request.post( app.data.endpoint + 'member', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/member', formData, function (res) {
     
     app.preloader.hide();
     
@@ -596,7 +600,7 @@ $$('#transfer-bonus .btnTransfer').on('click', function(e){
   var formData = app.form.convertToData('.trfbonus');
   formData.Authorization = app.data.token;
   
-  app.request.post( app.data.endpoint + 'member/trfbonus', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/member/trfbonus', formData, function (res) {
     
     app.preloader.hide();
 
@@ -609,7 +613,7 @@ $$('#transfer-bonus .btnTransfer').on('click', function(e){
       
       app.popup.close($$('.page[data-name="transfer-bonus"]').parents(".popup"));
       
-      app.request.get( app.data.endpoint + 'member/saldo/' + app.data.mbrid, function (res) {
+      app.request.get( app.data.endpoint + 'api/v1/member/saldo/' + app.data.mbrid, function (res) {
           
         var data = JSON.parse(res);
     
@@ -669,7 +673,7 @@ $$('#bank-trf .btnBankTrf').on('click', function(e){
   var formData = app.form.convertToData('.bank-trf');
   formData.Authorization = app.data.token;
   
-  app.request.post( app.data.endpoint + 'member/setbank', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/member/setbank', formData, function (res) {
     
     app.preloader.hide();
 
@@ -737,7 +741,7 @@ $$('#withdrawal .btnWithdraw').on('click', function(e){
   var formData = app.form.convertToData('.withdrawal');
   formData.Authorization = app.data.token;
   
-  app.request.post( app.data.endpoint + 'member/withdraw', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/member/withdraw', formData, function (res) {
     
     app.preloader.hide();
 
@@ -785,7 +789,7 @@ $$('#ganti-pin .btnGanti').on('click', function () {
   var formData = app.form.convertToData('.ganti-pin');
   formData.Authorization = app.data.token;
   
-  app.request.post( app.data.endpoint + 'member/gantipin', formData, function (res) {
+  app.request.post( app.data.endpoint + 'api/v1/member/gantipin', formData, function (res) {
     
     app.preloader.hide();
     

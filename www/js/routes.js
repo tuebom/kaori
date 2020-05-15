@@ -1115,7 +1115,7 @@ routes = [
       //var opr = routeTo.params.opr;
 
       // Simulate Ajax Request
-      app.request.json("http://212.24.111.23/kaori/hinet/cekharga", function(json) {
+      app.request.json( app.data.endpoint + "hinet/cekharga", function(json) {
           
         var data = { title: 'Harga Paket HINET', list: json };
 
@@ -1143,7 +1143,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json("http://212.24.111.23/kaori/pulsa/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "pulsa/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Pulsa ' + nama, list: json };
 
@@ -1171,7 +1171,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json("http://212.24.111.23/kaori/data/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "data/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Paket Data ' + nama, list: json };
 
@@ -1198,7 +1198,7 @@ routes = [
       // kode operator
       var opr = routeTo.params.opr;
 
-      app.request.json("http://212.24.111.23/kaori/topup/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "topup/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Topup ' + opr, list: json };
 
@@ -1226,7 +1226,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json("http://212.24.111.23/kaori/telpon/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "telpon/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Paket Nelpon ' + nama, list: json };
 
@@ -1254,7 +1254,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json("http://212.24.111.23/kaori/sms/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "sms/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Paket SMS ' + nama, list: json };
 
@@ -1282,7 +1282,7 @@ routes = [
       //var opr = routeTo.params.opr;
 
       // Simulate Ajax Request
-      app.request.json("http://212.24.111.23/kaori/pln/cekharga", function(json) {
+      app.request.json( app.data.endpoint + "pln/cekharga", function(json) {
           
         var data = { title: 'Harga Token PLN', list: json };
 
@@ -1309,7 +1309,7 @@ routes = [
       // kode operator
       var opr = routeTo.params.opr;
 
-      app.request.json("http://212.24.111.23/kaori/game/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + "game/cekharga/"+opr, function(json) {
           
         var data = { title: 'Harga Paket Game ' + opr, list: json };
 
@@ -1593,7 +1593,7 @@ routes = [
       formData.tgltrx = app.data.currentDate;
       formData.Authorization = app.data.token;
       
-      app.request.post("http://212.24.111.23/kaori/member/historitrx", formData, function(res) {
+      app.request.post( app.data.endpoint + "member/historitrx", formData, function(res) {
           
         var data = JSON.parse(res);
 
