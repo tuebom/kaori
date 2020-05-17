@@ -38,7 +38,8 @@
     <preference name="android-build-tool" value="gradle" />
     
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
-    <plugin name="cordova-plugin-cszbar" source="npm" />
+    <plugin name="cordova-plugin-qrscanner" source="npm" />
+    <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
     <!--<plugin name="cordova-plugin-camera" source="npm" />
     <plugin name="cordova-plugin-media-capture" spec="^6.3.0" />
     <plugin name="cordova-plugin-admobpro" source="npm" />-->
