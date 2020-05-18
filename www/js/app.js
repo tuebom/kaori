@@ -64,6 +64,9 @@ var app  = new Framework7({
       $$('#img1').attr('src', this.data.endpoint + 'images/back1.jpg');
       $$('#img2').attr('src', this.data.endpoint + 'images/back2.jpg');
       $$('#img3').attr('src', this.data.endpoint + 'images/back3.jpg');
+
+      // force lazy handler to check lazy images
+      $$('img.lazy').trigger('lazy');
       
       //*
       function copyDatabaseFile(dbName) {
