@@ -39,8 +39,7 @@
     
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-qrscanner" source="npm" /> --> <!--failed-->>
-    <plugin source="git" spec="https://github.com/phongphan/csZBar.git" />
-    <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
+    <plugin name="cordova-plugin-cszbar" source="npm" />
     <!--<plugin name="cordova-plugin-camera" source="npm" />
     <plugin name="cordova-plugin-media-capture" spec="^6.3.0" />
     <plugin name="cordova-plugin-admobpro" source="npm" />-->
@@ -72,9 +71,9 @@
     
     <!--<icon src="img/icon/icon.png"/>-->
     <engine name="android" spec="~7.0.0" />
-    <!-- <allow-intent href="*" launch-external="yes" /> -->
-    <allow-intent href="http://*/*" launch-external="yes" />
-    <allow-intent href="https://*/*" launch-external="yes" />
+    <allow-intent href="*" launch-external="yes" />
+    <!-- <allow-intent href="http://*/*" launch-external="yes" /> -->
+    <!-- <allow-intent href="https://*/*" launch-external="yes" /> -->
     <!-- <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
