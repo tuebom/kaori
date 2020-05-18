@@ -5,7 +5,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.app.kaori"
-        version   = "1.0.1">
+        version   = "1.0.2">
 
     <name>KAORI</name>
 
@@ -39,6 +39,7 @@
     
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <plugin name="cordova-plugin-qrscanner" source="npm" />
+    <!-- <plugin source="git" spec="https://github.com/tjwoon/csZBar.git" /> -->
     <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
     <!--<plugin name="cordova-plugin-camera" source="npm" />
     <plugin name="cordova-plugin-media-capture" spec="^6.3.0" />
