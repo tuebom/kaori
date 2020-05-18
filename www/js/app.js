@@ -841,7 +841,7 @@ $$(document).on('backbutton', function (e) {
       app.popup.close();
       return false;
   } else
-  if (app.views.main.router.url === '/') {
+  if (app.views.main.router.url === '/' || app.views.main.router.url == '/android_asset/www/index.html') {
     
     if (app.data.bLogedIn) {
       // catat waktu terakhir pemakaian
