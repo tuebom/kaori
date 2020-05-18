@@ -61,13 +61,12 @@ var app  = new Framework7({
 
     init: function () { // sama dengan onDeviceReady
 
-      this.lazy.create('page-current');
-      $$('#img1').attr('src', this.data.endpoint + 'images/back1.jpg');
-      $$('#img2').attr('src', this.data.endpoint + 'images/back2.jpg');
-      $$('#img3').attr('src', this.data.endpoint + 'images/back3.jpg');
+      $$('#img1').attr('data-src', this.data.endpoint + 'images/back1.jpg');
+      $$('#img2').attr('data-src', this.data.endpoint + 'images/back2.jpg');
+      $$('#img3').attr('data-src', this.data.endpoint + 'images/back3.jpg');
 
       // force lazy handler to check lazy images
-      $$('img.lazy').trigger('lazy');
+      // $$('img.lazy').trigger('lazy');
       
       //*
       function copyDatabaseFile(dbName) {
