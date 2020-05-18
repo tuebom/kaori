@@ -229,7 +229,7 @@ var app  = new Framework7({
         }
       
         // show message
-        app.dialog.alert(data.message, 'KAORI');
+        app.dialog.alert(data.message, 'Kaori');
         
         // update info saldo
         setTimeout(function () {
