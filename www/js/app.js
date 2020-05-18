@@ -61,9 +61,9 @@ var app  = new Framework7({
 
     init: function () { // sama dengan onDeviceReady
 
-      $$('#img1').attr('src', this.data.endpoint + 'images/back1.jpg');
-      $$('#img2').attr('src', this.data.endpoint + 'images/back2.jpg');
-      $$('#img3').attr('src', this.data.endpoint + 'images/back3.jpg');
+      // $$('#img1').attr('src', this.data.endpoint + 'images/back1.jpg');
+      // $$('#img2').attr('src', this.data.endpoint + 'images/back2.jpg');
+      // $$('#img3').attr('src', this.data.endpoint + 'images/back3.jpg');
 
       // force lazy handler to check lazy images
       // $$('img.lazy').trigger('lazy');
@@ -237,7 +237,6 @@ var app  = new Framework7({
         // update info saldo
         setTimeout(function () {
 
-          // http://212.24.111.23/
           app.request.get( app.data.endpoint + 'api/v1/member/saldo/'+ app.data.mbrid, function (res) {
           
             var data = JSON.parse(res);
@@ -280,11 +279,11 @@ var swiper = app.swiper.create('.swiper-container', {
     loop: true,
     //autoHeight: true,
     shortSwipes: false,
-    longSwipes: false,
+    longSwipes: false
     //effect:'fade'
     //spaceBetween: 100
-    preloadImages: true,
-    lazy: true
+    // preloadImages: true,
+    // lazy: true
 });
 
 swiper.autoplay.start();
@@ -375,7 +374,7 @@ var ac_share = app.actions.create({
       '<div class="item-media"></div>'+
       '<div class="item-inner">'+
         '<div class="item-title-row">'+
-          '<div class="item-title">Cancel</div>'+
+          '<div class="item-title" style="color: red">Cancel</div>'+
         '</div>'+
         '<div class="item-text"></div>'+
       '</div>'+

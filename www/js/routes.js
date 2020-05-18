@@ -1284,7 +1284,7 @@ routes = [
           var formData = app.form.convertToData('.pendaftaran');
           formData.mbrid = app.data.mbrid;
           
-          app.request.post( app.data.endpoint + 'member', formData, function (res) { //212.24.111.23
+          app.request.post( app.data.endpoint + 'member', formData, function (res) {
             
             app.preloader.hide();
             
