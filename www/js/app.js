@@ -283,6 +283,8 @@ var swiper = app.swiper.create('.swiper-container', {
     longSwipes: false,
     //effect:'fade'
     //spaceBetween: 100
+    preloadImages: true,
+    lazy: true
 });
 
 swiper.autoplay.start();
