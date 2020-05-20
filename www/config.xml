@@ -68,7 +68,9 @@
     </plugin>
     <plugin name="cordova-plugin-network-information" source="npm" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
-    <plugin name="cordova-android-support-gradle-release" source="npm" />
+    <plugin name="cordova-android-support-gradle-release" source="npm">
+        <variable name="ANDROID_SUPPORT_VERSION" value="23.+" />
+    </plugin>
     
     <!--<icon src="img/icon/icon.png"/>-->
     <engine name="android" spec="~7.0.0" />
