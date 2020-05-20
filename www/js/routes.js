@@ -1016,7 +1016,7 @@ routes = [
       //var opr = routeTo.params.opr;
 
       // Simulate Ajax Request
-      app.request.json( app.data.endpoint + "hinet/cekharga", function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/hinet/cekharga', function(json) {
           
         var data = { title: 'Harga Paket HINET', list: json };
 
@@ -1044,7 +1044,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json( app.data.endpoint + "pulsa/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/pulsa/cekharga/'+opr, function(json) {
           
         var data = { title: 'Harga Pulsa ' + nama, list: json };
 
@@ -1072,7 +1072,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json( app.data.endpoint + "data/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/data/cekharga/'+opr, function(json) {
           
         var data = { title: 'Harga Paket Data ' + nama, list: json };
 
@@ -1099,7 +1099,7 @@ routes = [
       // kode operator
       var opr = routeTo.params.opr;
 
-      app.request.json( app.data.endpoint + "topup/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/topup/cekharga/'+opr, function(json) {
           
         var data = { title: 'Harga Topup ' + opr, list: json };
 
@@ -1127,7 +1127,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json( app.data.endpoint + "telpon/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/telpon/cekharga/'+opr, function(json) {
           
         var data = { title: 'Harga Paket Nelpon ' + nama, list: json };
 
@@ -1155,7 +1155,7 @@ routes = [
       var opr = routeTo.params.opr;
       var nama = routeTo.params.nama;
 
-      app.request.json( app.data.endpoint + "sms/cekharga/"+opr, function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/sms/cekharga/'+opr, function(json) {
           
         var data = { title: 'Harga Paket SMS ' + nama, list: json };
 
@@ -1183,36 +1183,9 @@ routes = [
       //var opr = routeTo.params.opr;
 
       // Simulate Ajax Request
-      app.request.json( app.data.endpoint + "pln/cekharga", function(json) {
+      app.request.json( app.data.endpoint + 'api/v1/pln/cekharga', function(json) {
           
         var data = { title: 'Harga Token PLN', list: json };
-
-        resolve(
-          { componentUrl: './pages/daftar-harga.html' },
-          { context: { data: data, } }
-        );
-        app.preloader.hide();
-      });
-    }
-  },
-  {
-    path: '/harga-game/:opr',
-    async: function (routeTo, routeFrom, resolve, reject) {
-      // Router instance
-      var router = this;
-
-      // App instance
-      var app = router.app;
-
-      // Show Preloader
-      app.preloader.show();
-
-      // kode operator
-      var opr = routeTo.params.opr;
-
-      app.request.json( app.data.endpoint + "game/cekharga/"+opr, function(json) {
-          
-        var data = { title: 'Harga Paket Game ' + opr, list: json };
 
         resolve(
           { componentUrl: './pages/daftar-harga.html' },
