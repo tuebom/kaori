@@ -292,7 +292,7 @@ if (mins > 3) {
   ls.open(false);
 }
 
-var ac_share = app.actions.create({
+/*var ac_share = app.actions.create({
   buttons: [
     {
       text: '<div class="list"><ul><li><div class="item-content">'+
@@ -348,24 +348,6 @@ var ac_share = app.actions.create({
         })
       }
     },
-    /*{
-      text: '<div class="list"><ul><li><div class="item-content">'+
-      '<div class="item-media"><img class="material-icons" src="img/twitter.png" /></div>'+
-      '<div class="item-inner">'+
-        '<div class="item-title-row">'+
-          '<div class="item-title">Twitter</div>'+
-        '</div>'+
-        '<div class="item-text"></div>'+
-      '</div>'+
-    '</div></li></ul></div>',
-      onClick: function () {
-        var msg = 'Ayo beli pulsa dan paket internet murah praktis hanya lewat aplikasi ini!' +
-        'https://play.google.com/store/apps/details?id=com.app.kaori';
-        window.plugins.socialsharing.shareViaTwitter(msg, null, 'https://twitter.com/', null, function(e){
-          app.dialog.alert("Sharing failed with message: " + e, "KAORI");
-        })
-      }
-    },*/
     {
       text: '<div class="list"><ul><li><div class="item-content">'+
       '<div class="item-media"></div>'+
@@ -379,11 +361,11 @@ var ac_share = app.actions.create({
       color: 'red',
     },
   ]
-});
+});*/
 
-$$('.ac-share').on('click', function () {
-  ac_share.open();
-});
+// $$('.ac-share').on('click', function () {
+//   ac_share.open();
+// });
 
 // Login Screen
 $$('#my-login-screen .login-button').on('click', function () {
