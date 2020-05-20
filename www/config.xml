@@ -40,8 +40,8 @@
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-qrscanner" source="npm" /> --> <!--failed-->>
     <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
-    <plugin name="cordova-plugin-camera" source="npm" />
-    <plugin name="cordova-plugin-admobpro" source="npm" />
+    <!-- <plugin name="cordova-plugin-camera" source="npm" /> -->
+    <!-- <plugin name="cordova-plugin-admobpro" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-x-socialsharing" source="npm" /> -->
 
     <plugin name="cordova-plugin-console" source="npm" />
