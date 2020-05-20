@@ -53,9 +53,6 @@ var app  = new Framework7({
   },
   // App root methods
   methods: {
-    // helloWorld: function () {
-      // app.dialog.alert('Hello World!');
-    // },
   },
   on: {
 
@@ -105,7 +102,7 @@ var app  = new Framework7({
 
         var db = app.data.db;
             
-        // if (db) {
+        if (db) {
   
           var now = new Date();
           var date = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
@@ -115,7 +112,7 @@ var app  = new Framework7({
           }, function(error) {
             app.dialog.alert('delete error: ' + error.message);
           });
-        // }
+        }
   
       }).catch(function (err) {
         // error! :(
