@@ -34,7 +34,7 @@
     <preference name="android-minSdkVersion" value="19"/>
     <preference name="android-targetSdkVersion" value="28"/>
     <preference name="android-installLocation" value="auto"/>
-    <preference name="phonegap-version" value="cli-7.1.0" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="android-build-tool" value="gradle" />
     
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
@@ -83,7 +83,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
 
-        <resource-file src="google-services.json" target="google-services.json" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
 
         <icon src="res/icon/android/icon-36-ldpi.png" density="ldpi"/>
         <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi"/>
