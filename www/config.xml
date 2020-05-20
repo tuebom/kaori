@@ -39,7 +39,7 @@
     
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-qrscanner" source="npm" /> --> <!--failed-->>
-    <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
+    <plugin name="cordova-plugin-cszbar" source="npm" />
     <!--<plugin name="cordova-plugin-camera" source="npm" />
     <plugin name="cordova-plugin-media-capture" spec="^6.3.0" />
     <plugin name="cordova-plugin-admobpro" source="npm" />-->
@@ -96,10 +96,10 @@
         <splash density="port-hdpi"  src="res/screen/android/screen-hdpi-portrait.png" />
         <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
     </platform>
-    <platform name="ios">
+    <!-- <platform name="ios">
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
-    </platform>
+    </platform> -->
     
     <!--<icon src="res/icon/blackberry/icon-80.png" gap:platform="blackberry"/>
     <icon src="res/icon/blackberry/icon-80.png" gap:platform="blackberry" gap:state="hover"/>
