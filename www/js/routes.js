@@ -1385,7 +1385,7 @@ routes = [
       formData.tgltrx = app.data.currentDate;
       formData.Authorization = app.data.token;
       
-      app.request.post( app.data.endpoint + "member/historitrx", formData, function(res) {
+      app.request.post( app.data.endpoint + "api/v1/member/historitrx", formData, function(res) {
           
         var data = JSON.parse(res);
 
