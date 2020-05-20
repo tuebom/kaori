@@ -85,15 +85,15 @@
 
         <resource-file src="google-services.json" target="google-services.json" />
 
-        <icon src="res\icon\android\icon-36-ldpi.png" density="ldpi"/>
-        <icon src="res\icon\android\icon-48-mdpi.png" density="mdpi"/>
-        <icon src="res\icon\android\icon-72-hdpi.png" density="hdpi"/>
-        <icon src="res\icon\android\icon-96-xhdpi.png" density="xhdpi"/>
-        <splash src="res\screen\android\screen-hdpi-portrait.png" />
-        <splash density="port-ldpi"  src="res\screen\android\screen-ldpi-portrait.png" />
-        <splash density="port-mdpi"  src="res\screen\android\screen-mdpi-portrait.png" />
-        <splash density="port-hdpi"  src="res\screen\android\screen-hdpi-portrait.png" />
-        <splash density="port-xhdpi" src="res\screen\android\screen-xhdpi-portrait.png" />
+        <icon src="res/icon/android/icon-36-ldpi.png" density="ldpi"/>
+        <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi"/>
+        <icon src="res/icon/android/icon-72-hdpi.png" density="hdpi"/>
+        <icon src="res/icon/android/icon-96-xhdpi.png" density="xhdpi"/>
+        <splash src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi"  src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi"  src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="port-hdpi"  src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*"/>
