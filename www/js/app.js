@@ -141,6 +141,9 @@ var app  = new Framework7({
         formData.nohp  = nohp;
         formData.pin   = pin;
         formData.gcmid = gcmid;
+
+        var url = app.data.endpoint + 'api/v1/auth/login';
+        app.dialog.alert(url);
   
         this.preloader.show();
 
