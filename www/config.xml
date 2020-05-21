@@ -34,13 +34,13 @@
     <preference name="android-minSdkVersion" value="19"/>
     <preference name="android-targetSdkVersion" value="28"/>
     <preference name="android-installLocation" value="auto"/>
-    <preference name="phonegap-version" value="cli-7.1.0" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name="android-build-tool" value="gradle" />
     
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
         <application android:usesCleartextTraffic="true" />
     </edit-config>
-    
+
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-qrscanner" source="npm" /> --> <!--failed-->>
     <!-- <plugin name="cordova-plugin-cszbar" source="npm" /> -->
