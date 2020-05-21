@@ -142,8 +142,8 @@ var app  = new Framework7({
         formData.pin   = pin;
         formData.gcmid = gcmid;
 
-        var url = app.data.endpoint + 'api/v1/auth/login';
-        app.dialog.alert(url);
+        // var url = app.data.endpoint + 'api/v1/auth/login';
+        // app.dialog.alert(url);
   
         this.preloader.show();
 
@@ -407,8 +407,8 @@ $$('#my-login-screen .login-button').on('click', function () {
 
   // console.log(formData)
 
-  var url = app.data.endpoint + 'api/v1/auth/login';
-  app.dialog.alert(url);
+  // var url = app.data.endpoint + 'api/v1/auth/login';
+  // app.dialog.alert(url);
 
   // http://212.24.111.23/
   app.request.post( app.data.endpoint + 'api/v1/auth/login', formData, function (res) {
