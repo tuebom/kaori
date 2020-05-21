@@ -67,16 +67,16 @@
     <!--<icon src="img/icon/icon.png"/>-->
     <engine name="android" spec="~7.0.0" />
     <!-- <allow-intent href="*" launch-external="yes" /> -->
-    <allow-intent href="http://*/*" launch-external="yes" />
-    <allow-intent href="https://*/*" launch-external="yes" />
+    <!-- <allow-intent href="http://*/*" launch-external="yes" />
+    <allow-intent href="https://*/*" launch-external="yes" /> -->
     <!-- <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" /> -->
     <!-- <allow-navigation href="*" /> -->
-    <allow-navigation href="http://*/*" />
-    <allow-navigation href="https://*/*" />
-    
+    <!-- <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" /> -->
+
     <platform name="android">
         <allow-intent href="market:*" />
 
