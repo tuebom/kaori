@@ -147,7 +147,7 @@ var app  = new Framework7({
   
         this.preloader.show();
 
-        this.request.post( app.data.endpoint + 'api/v1/auth/login', formData, function (res) {
+        this.request.post( 'http://212.24.111.23/kaori/api/v1/auth/login', formData, function (res) {
     
           app.preloader.hide();
           var data = JSON.parse(res);
@@ -411,7 +411,7 @@ $$('#my-login-screen .login-button').on('click', function () {
   // app.dialog.alert(url);
 
   // http://212.24.111.23/
-  app.request.post( app.data.endpoint + 'api/v1/auth/login', formData, function (res) {
+  app.request.post( 'http://212.24.111.23/kaori/api/v1/auth/login', formData, function (res) {
     
     app.preloader.hide();
     
@@ -501,7 +501,7 @@ $$('#my-reg-screen .register-button').on('click', function () {
   // formData.mbrid = 1; cause wrong result
   formData.gcmid = regId;
 
-  app.request.post( app.data.endpoint + 'api/v1/member', formData, function (res) {
+  app.request.post( 'http://212.24.111.23/kaori/api/v1/member', formData, function (res) {
     
     app.preloader.hide();
     
