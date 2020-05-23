@@ -822,12 +822,13 @@ $$(document).on('backbutton', function (e) {
   if ($$('.modal-in').length > 0) {
 
       app.dialog.close();
-      app.popup.close();
-      return false;
+      // return false;
+      navigator.app.exitApp();
   } else
   if (app.views.main.router.url === '/' || app.views.main.router.url == '/android_asset/www/index.html') {
     
     if (app.data.bLogedIn) {
+      app.data.bLogedIn = false;
       // catat waktu terakhir pemakaian
       var dateEnd = new Date().getTime();
       localStorage.setItem('lastOpened', dateEnd);
