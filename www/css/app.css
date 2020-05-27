@@ -228,7 +228,8 @@ p {
 }
 
 img.header {
-  height: 100%;
+  /* height: 100%; */
+  max-width: 100%;
 }
 
 .md .toolbar {
@@ -245,6 +246,7 @@ img.header {
 
 .list .item-title {
   color: #2196f3;
+  padding-top: 5px;
 }
 
 .md .navbar, .md .toolbar {

@@ -42,7 +42,7 @@
         <application android:usesCleartextTraffic="true" />
     </edit-config>
 
-    <plugin name="cordova-plugin-geolocation" source="npm" />
+    <!-- <plugin name="cordova-plugin-geolocation" source="npm" /> -->
 
     <!-- <plugin name="phonegap-plugin-barcodescanner" source="npm" /> -->
     <!-- <plugin name="cordova-plugin-qrscanner" source="npm" /> --> <!--failed-->>

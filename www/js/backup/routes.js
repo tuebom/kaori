@@ -981,30 +981,6 @@ routes = [
     url: './pages/cek-harga.html',
   },
   {
-    path: '/cek-harga-kaori/',
-    url: './pages/kategori.html',
-  },
-  {
-    path: '/product-beras/',
-    url: './pages/harga-beras.html',
-  },
-  {
-    path: '/product-minyak/',
-    url: './pages/harga-minyak.html',
-  },
-  {
-    path: '/product-air/',
-    url: './pages/harga-air.html',
-  },
-  {
-    path: '/product-kopi/',
-    url: './pages/harga-kopi.html',
-  },
-  {
-    path: '/product-dupa/',
-    url: './pages/harga-dupa.html',
-  },
-  {
     path: '/cek-harga-pulsa/',
     url: './pages/cek-harga-pulsa.html',
   },
